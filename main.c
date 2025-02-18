@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void trie_tableau(int *ptab,int taille);
+
 int main() 
 {
     /*
@@ -34,19 +36,7 @@ int main()
         temp /= 10;
     }
 
-    //Trie du tableau en ordre croissant en utilisant l'algoritme de trie par sélection
-    for(i=0;i<taille;i++)
-    {
-        for(j=i+1;j<taille-1;j++)
-        {
-            if (tableau_chiffre[i]>tableau_chiffre[j])
-            {
-                temp = tableau_chiffre[i];
-                tableau_chiffre[i] = tableau_chiffre[j];
-                tableau_chiffre[j] = temp;
-            }
-        }
-    }
+    trie_tableau(tableau_chiffre,taille); //Appel de la fonction de trie du tableau
     
     printf("\nLes chiffre de contenu dans %ld dont : ",number);
     for(i=0;i<taille;i++)
@@ -54,4 +44,23 @@ int main()
         printf("%2d",tableau_chiffre[i]);
     }
     return 0;
+}
+
+void trie_tableau(int * ptab, int taille)
+{
+    int i,j,temp;
+    //Trie du tableau en ordre croissant en utilisant l'algoritme de trie par sélection
+    for(i=0;i<taille;i++)
+    {
+        for(j=i+1;j<taille-1;j++)
+        {
+            if (*(ptab+i)>*(ptab+j))
+            {
+                temp = *(ptab+i);
+                *(ptab+i) = *(ptab+j);
+                *(ptab+j) = temp;
+            }
+        }
+    }
+
 }
